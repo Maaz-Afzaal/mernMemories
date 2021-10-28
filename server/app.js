@@ -6,6 +6,8 @@ import logger from 'morgan';
 const URL = 'mongodb://localhost:27017/mernMemories';
 import mongoose from 'mongoose';
 import postRouter from './routes/postRouter.js';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 const connect = mongoose.connect(URL);
 connect.then(
   (db) => {
@@ -16,7 +18,9 @@ connect.then(
   },
 );
 var app = express();
-
+app.use(bodyParser.json({ limit: '30mb', extended: true }));
+app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }));
+app.use(cors());
 app.set('views', path.join('./', 'views'));
 app.set('view engine', 'jade');
 app.use('/posts', postRouter);

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Field } from 'react-redux-form';
 const Post = () => {
-  return <h1>Post</h1>;
+  return <h1>post</h1>;
 };
 
 export default Post;
